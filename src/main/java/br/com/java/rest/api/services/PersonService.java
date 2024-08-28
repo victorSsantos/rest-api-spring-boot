@@ -1,7 +1,7 @@
 package br.com.java.rest.api.services;
 
-import br.com.java.rest.api.dto.PersonDTO;
-import br.com.java.rest.api.dto.mappers.PersonMapper;
+import br.com.java.rest.api.services.dto.PersonDTO;
+import br.com.java.rest.api.services.dto.mappers.PersonMapper;
 import br.com.java.rest.api.model.entities.Person;
 import br.com.java.rest.api.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 
 @Service
 public class PersonService {
@@ -34,5 +33,14 @@ public class PersonService {
     public PersonDTO insert(PersonDTO personDTO) {
         Person personToInsert = personMapper.mapToEntity(personDTO);
         return personMapper.mapToDTO(repo.save(personToInsert));
+    }
+
+    public void delete(Long id){
+        repo.deleteById(findById(id).getId());
+    }
+
+    public void update(PersonDTO person) {
+        PersonDTO personToUpdate = findById(person.getId());
+        repo.save(personMapper.mapToEntity(personToUpdate));
     }
 }

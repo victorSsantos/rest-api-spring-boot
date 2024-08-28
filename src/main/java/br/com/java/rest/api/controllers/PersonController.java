@@ -1,6 +1,6 @@
 package br.com.java.rest.api.controllers;
 
-import br.com.java.rest.api.dto.PersonDTO;
+import br.com.java.rest.api.services.dto.PersonDTO;
 import br.com.java.rest.api.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/persons")
+@RequestMapping(value = "/api/persons/v1")
 public class PersonController {
 
     @Autowired
@@ -37,5 +37,16 @@ public class PersonController {
                 .path("/{id}")
                 .buildAndExpand(result.getId()).toUri();
         return ResponseEntity.created(uri).body(result);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    public ResponseEntity<Void> update(@RequestBody PersonDTO person){
+        service.update(person);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,4 +1,4 @@
-package br.com.java.rest.api.dto;
+package br.com.java.rest.api.services.dto;
 
 import br.com.java.rest.api.model.enums.Gender;
 import org.springframework.stereotype.Component;

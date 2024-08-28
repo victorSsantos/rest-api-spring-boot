@@ -1,7 +1,7 @@
-package br.com.java.rest.api.dto.mappers;
+package br.com.java.rest.api.services.dto.mappers;
 
 import br.com.java.rest.api.model.entities.Person;
-import br.com.java.rest.api.dto.PersonDTO;
+import br.com.java.rest.api.services.dto.PersonDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
