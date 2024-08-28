@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Profile;
 import java.util.Arrays;
 
 @Configuration
-//@Profile("test")
+@Profile("test")
 public class TestConfigDB implements CommandLineRunner {
 
     @Autowired
@@ -22,9 +22,9 @@ public class TestConfigDB implements CommandLineRunner {
 
         personRepo.deleteAll();
 
-        Person p1 = new Person(null, "John", "Green", "190 Blackwood St.", Gender.Male);
+        /*Person p1 = new Person(null, "John", "Green", "190 Blackwood St.", Gender.Male);
         Person p2 = new Person(null, "Susy", "Rose", "320 Sunnysea St.", Gender.Female);
 
-        personRepo.saveAll(Arrays.asList(p1,p2));
+        personRepo.saveAll(Arrays.asList(p1,p2));*/
     }
 }

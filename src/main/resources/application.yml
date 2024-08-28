@@ -1,17 +1,16 @@
 spring:
   application:
     name: rest-api-spring-boot
-  profiles:
-    active: test
+  #profiles:
+    #active: test
   datasource:
     url: jdbc:mysql://localhost:3306/demo_spring
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: develop
     password: develop@123
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:

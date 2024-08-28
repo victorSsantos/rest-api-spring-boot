@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/persons/v1")
+@RequestMapping(value = "/api/v1/persons")
 public class PersonController {
 
     @Autowired
@@ -39,14 +39,15 @@ public class PersonController {
         return ResponseEntity.created(uri).body(result);
     }
 
-    @DeleteMapping
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<Void> update(@RequestBody PersonDTO person){
-        service.update(person);
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@RequestBody PersonDTO person, @PathVariable Long id){
+        service.update(person, id);
         return ResponseEntity.noContent().build();
     }
 }
