@@ -1,10 +1,13 @@
 package br.com.java.rest.api.services.dto;
 
 import br.com.java.rest.api.model.enums.Gender;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
-public class PersonDTO {
+public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
 
     private Long id;
     private String firstName;

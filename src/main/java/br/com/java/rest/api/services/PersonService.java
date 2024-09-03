@@ -4,9 +4,8 @@ import br.com.java.rest.api.services.dto.PersonDTO;
 import br.com.java.rest.api.services.dto.mappers.PersonMapper;
 import br.com.java.rest.api.model.entities.Person;
 import br.com.java.rest.api.repositories.PersonRepository;
-import br.com.java.rest.api.services.exceptions.DataIntegrityException;
-import br.com.java.rest.api.services.exceptions.ResourceNotFoundException;
-import org.hibernate.exception.ConstraintViolationException;
+import br.com.java.rest.api.exceptions.DataIntegrityException;
+import br.com.java.rest.api.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,8 @@ public class PersonService {
     }
 
     public PersonDTO findById(Long id){
-        Person result = repo.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Person result = repo.findById(id)
+                .orElseThrow(ResourceNotFoundException::new);
         return personMapper.mapToDTO(result);
     }
 

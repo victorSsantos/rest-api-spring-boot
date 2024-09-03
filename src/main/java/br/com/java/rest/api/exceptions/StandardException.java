@@ -1,4 +1,4 @@
-package br.com.java.rest.api.controllers.exceptions;
+package br.com.java.rest.api.exceptions;
 
 import org.springframework.http.HttpStatus;
 

@@ -1,9 +1,9 @@
-package br.com.java.rest.api.controllers.exceptions.handler;
+package br.com.java.rest.api.exceptions.handler;
 
-import br.com.java.rest.api.controllers.exceptions.StandardException;
-import br.com.java.rest.api.services.exceptions.DataIntegrityException;
-import br.com.java.rest.api.services.exceptions.ResourceNotFoundException;
-import br.com.java.rest.api.services.exceptions.UnsupportedMathOperationException;
+import br.com.java.rest.api.exceptions.InvalidJwtAuthException;
+import br.com.java.rest.api.exceptions.StandardException;
+import br.com.java.rest.api.exceptions.DataIntegrityException;
+import br.com.java.rest.api.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +15,7 @@ import java.time.Instant;
 
 @RestController
 @ControllerAdvice
-public class ControllerExceptionHandler {
-
-    @ExceptionHandler(UnsupportedMathOperationException.class)
-    public ResponseEntity<StandardException> unsupportedMathOperation(UnsupportedMathOperationException e, HttpServletRequest request){
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-        StandardException err = new StandardException(Instant.now(), status.value() , status, e.getMessage(), request.getServletPath());
-        return ResponseEntity.status(status).body(err);
-    }
+public class HandlerException {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardException> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request){
@@ -38,4 +31,10 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
+    @ExceptionHandler(InvalidJwtAuthException.class)
+    public ResponseEntity<StandardException> invalidJwtAuthentication(InvalidJwtAuthException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardException err = new StandardException(Instant.now(), status.value() , status, e.getMessage(), request.getServletPath());
+        return ResponseEntity.status(status).body(err);
+    }
 }
