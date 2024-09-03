@@ -22,12 +22,9 @@ public class AuthController {
     @GetMapping(value = "/signin")
     public ResponseEntity signIn(@RequestParam(value = "username", defaultValue = "") String username,
                                  @RequestParam(value = "password", defaultValue = "") String password){
-
         if(username.isBlank() || password.isBlank()) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid clint request.");
         var token = authService.signin(new AccountCredentialsDTO(username,password));
         if(token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid clint request.");
-
         return token;
     }
-
 }

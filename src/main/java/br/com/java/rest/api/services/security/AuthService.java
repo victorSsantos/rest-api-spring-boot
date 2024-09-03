@@ -24,7 +24,7 @@ public class AuthService {
     @Autowired
     private UserRepository repository;
 
-    public ResponseEntity signin(AccountCredentialsDTO data){
+    public ResponseEntity<TokenDTO> signin(AccountCredentialsDTO data){
         try{
             var username = data.getUserName();
             var password = data.getPassword();

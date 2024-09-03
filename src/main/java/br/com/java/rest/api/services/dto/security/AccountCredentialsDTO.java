@@ -1,7 +1,5 @@
 package br.com.java.rest.api.services.dto.security;
 
-import br.com.java.rest.api.exceptions.InvalidJwtAuthException;
-
 import java.io.Serializable;
 import java.util.Objects;
 
